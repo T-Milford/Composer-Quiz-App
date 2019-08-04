@@ -7,6 +7,11 @@
     color: blue;
 }
 
+.intro {
+    display: block;
+    margin: auto;
+}
+
 .main_window {
     display: block;
     width: 50%;
@@ -14,6 +19,7 @@
     border: 2px black solid;
     border-radius: 3px;
     margin: auto;
+    padding: 20px;
 }
 
 .main_window p {
