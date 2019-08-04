@@ -6,8 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tobie Milford FSF Quiz App Assignment</title>
     <link rel="stylesheet" href="./main.css">
-    <script src="./script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./bank.js"></script>
+    <script src="./script.js"></script>
+
 </head>
 <body>
     <header>
@@ -22,17 +24,15 @@
     </header>
     
     <section class="main_window js-main_window">
-        <div class="intro">
-                <h2>Think you know Bach about the great composers?  Take this quiz and find out!</h2>
+        <div class="js-intro">
+                <h2>Think you know Bach about the Great Composers?  Take this quiz and find out!</h2>
                 <button type="button" class="begin_button">Begin!</button>
         </div>
-        
-
     </section>
     
     <footer class="footer_counters">
         <div class="count_container">
-            <div class="question_counter js-question-counter">Question 4 of 7</div>
+            <div class="question_counter js-question-counter">Question ${questionCounter} of 7</div>
         </div>
         <div class="count_container">
             <div class="score_counter js-score-counter">1 out of 3 points</div>

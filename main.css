@@ -12,6 +12,11 @@
     margin: auto;
 }
 
+.begin_button {
+    display: block;
+    margin: auto;
+}
+
 .main_window {
     display: block;
     width: 50%;
