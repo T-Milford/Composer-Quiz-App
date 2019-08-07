@@ -28,8 +28,11 @@
 }
 
 .main_window p {
-    text-align: center;
-    
+    text-align: center;   
+}
+
+.answer_formatter {
+    display: block;
 }
 
 .footer_counters {
