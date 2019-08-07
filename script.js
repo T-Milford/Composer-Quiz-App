@@ -23,32 +23,31 @@ function afterFirstClick() {
 // to do:    
 //      questionBank[insert questionCounter here]
 
-//      determine how to submit answer
 //      compare user's answer to actual answer
 //      it will then send users to a correctAnswer or incorrectAnswer function
 function questionDisplayer () {
     $('.question_container').html(
         `
         <div class="question_formatter">
-            <h2>${questionBank[1].question}</h2>
+            <h2>${questionBank[questionCounter].question}</h2>
         </div>
 
         <form class="answer_container"> 
             <label class="answer_formatter">
-                <input type="radio" value="${questionBank[0].answers[0]}" name="answer" required>
-                <span>${questionBank[1].answers[0]}</span> 
+                <input type="radio" value="${questionBank[questionCounter].answers[0]}" name="answer" required>
+                <span>${questionBank[questionCounter].answers[0]}</span> 
                 </label>
             <label class="answer_formatter">
                 <input type="radio" value="${questionBank[0].answers[1]}" name="answer" required>
-                <span>${questionBank[1].answers[1]}</span> 
+                <span>${questionBank[questionCounter].answers[1]}</span> 
                 </label>
             <label class="answer_formatter">
                 <input type="radio" value="${questionBank[0].answers[2]}" name="answer" required>
-                <span>${questionBank[1].answers[2]}</span> 
+                <span>${questionBank[questionCounter].answers[2]}</span> 
                 </label>
             <label class="answer_formatter">
                 <input type="radio" value="${questionBank[0].answers[3]}" name="answer" required>
-                <span>${questionBank[1].answers[3]}</span> 
+                <span>${questionBank[questionCounter].answers[3]}</span> 
                 </label>
             <button class="answer_submit" type="submit">Check your answer</button>
         </form>
@@ -57,29 +56,51 @@ function questionDisplayer () {
 }
 
 function respondToAnswer () {
-    $('.question_container').on(submit, function () {
+    $('.question_container').on('submit', function () {
         event.preventDefault();
-        console.log('respondToAnswer ran!');
-        // if ().val() == 
+        if ($('input:checked').val() === questionBank[0].correctAnswer) {
+            feedbackCorrect();
+            questionCounter += 1;
+        }
+        else {
+            feedbackWrong();
+        }
     }
         )
 
 }
 
     
-
-// this function calls the HTML for a screen indicating whether or not the user's answer was correct.  
-// It will update current score to reflect this.
-// It will then call questionDisplayer 
-function userSelectAnswer() {
-    console.log('userSelectAnswer is working!');
-}
-
 // Upon submitting an answer, users should:
 // receive textual feedback about their answer. If they were incorrect, they should be told the correct answer.
 // be moved onto the next question (or interact with an element to move on).
 
+function feedbackCorrect () {
+    $('.question_container').html(`
+    <div>
+    <h1>Well done!</h1>  
+    <h2>It was indeed ${questionBank[questionCounter].correctAnswer}.</h2>
+    <form>
+    <button type='submit'>Next question!</button>
+    </form>
+    
+    `
+    )
+    $('.question_container').on('submit', function () {
+        questionDisplayer();
+    
+})
+}
 
+
+function feedbackWrong () {
+    $('.question_container').html(`
+    
+    
+    
+    `
+    
+    )}
 
 // Users should be shown their overall score at the end of the quiz. In other words, 
 // how many questions they got right out of the total questions asked.
