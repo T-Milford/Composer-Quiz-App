@@ -38,15 +38,15 @@ function questionDisplayer () {
                 <span>${questionBank[questionCounter].answers[0]}</span> 
                 </label>
             <label class="answer_formatter">
-                <input type="radio" value="${questionBank[0].answers[1]}" name="answer" required>
+                <input type="radio" value="${questionBank[questionCounter].answers[1]}" name="answer" required>
                 <span>${questionBank[questionCounter].answers[1]}</span> 
                 </label>
             <label class="answer_formatter">
-                <input type="radio" value="${questionBank[0].answers[2]}" name="answer" required>
+                <input type="radio" value="${questionBank[questionCounter].answers[2]}" name="answer" required>
                 <span>${questionBank[questionCounter].answers[2]}</span> 
                 </label>
             <label class="answer_formatter">
-                <input type="radio" value="${questionBank[0].answers[3]}" name="answer" required>
+                <input type="radio" value="${questionBank[questionCounter].answers[3]}" name="answer" required>
                 <span>${questionBank[questionCounter].answers[3]}</span> 
                 </label>
             <button class="answer_submit" type="submit">Check your answer</button>
@@ -70,7 +70,6 @@ function respondToAnswer () {
 
 }
 
-    
 // Upon submitting an answer, users should:
 // receive textual feedback about their answer. If they were incorrect, they should be told the correct answer.
 // be moved onto the next question (or interact with an element to move on).
