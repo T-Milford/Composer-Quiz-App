@@ -9,8 +9,6 @@
 let questionCounter = 0;
 let scoreCounter = 0;
 
-// The starting screen should have a button that users can click to start the quiz.
-    // This button deletes the starting screen div and calls questionDisplayer (for the first question?).
 function afterFirstClick() {
     console.log('afterFirstClick ran!')
     $('.js-intro').on('click', '.begin_button', function(event) {
@@ -20,11 +18,6 @@ function afterFirstClick() {
     })
 }
 
-// to do:    
-//      questionBank[insert questionCounter here]
-
-//      compare user's answer to actual answer
-//      it will then send users to a correctAnswer or incorrectAnswer function
 function questionDisplayer () {
     $('.question_container').html(
         `
@@ -58,9 +51,10 @@ function questionDisplayer () {
 function respondToAnswer () {
     $('.question_container').on('submit', function () {
         event.preventDefault();
-        if ($('input:checked').val() === questionBank[0].correctAnswer) {
-            feedbackCorrect();
+        if ($('input:checked').val() === questionBank[questionCounter].correctAnswer) {
             questionCounter += 1;
+            feedbackCorrect();
+            
         }
         else {
             feedbackWrong();
@@ -86,6 +80,7 @@ function feedbackCorrect () {
     `
     )
     $('.question_container').on('submit', function () {
+        event.preventDefault();
         questionDisplayer();
     
 })
