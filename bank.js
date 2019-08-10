@@ -30,5 +30,45 @@ const questionBank = [
         ],
       correctAnswer: 'Bach'
     },
+    {
+      question: 'Who composed “The Magic Flute”??',
+        answers: [
+          'Brahms',
+          'Beethoven',
+          'Bach',
+          'Mozart'
+          ],
+        correctAnswer: 'Mozart'
+      },
+      {
+        question: 'Which composer was famously crude in public but secretly gave away most of his money to help others?”?',
+          answers: [
+            'Brahms',
+            'Beethoven',
+            'Bach',
+            'Mozart'
+            ],
+          correctAnswer: 'Brahms'
+        },
+        {
+          question: 'Which composer wrote one of his most famous solo violin pieces in the wake of the loss of his wife and youngest daughter”?',
+            answers: [
+              'Brahms',
+              'Beethoven',
+              'Bach',
+              'Mozart'
+              ],
+            correctAnswer: 'Bach'
+          },
+          {
+            question: 'Which composer wrote many of his most famous works after he become almost completely deaf?',
+              answers: [
+                'Brahms',
+                'Beethoven',
+                'Bach',
+                'Mozart'
+                ],
+              correctAnswer: 'Beethoven'
+            },
 ];
 
