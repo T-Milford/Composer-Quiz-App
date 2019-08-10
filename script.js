@@ -66,7 +66,7 @@ function respondToAnswer() {
     console.log('respondToAnswer ran!')
     console.log(questionCounter);
     // $('.content_container').on('submit', '.answer_submit'... crashes program!  Why?
-    // this is getting called when other buttons below are clicked!  but adding above parameters breaks it.
+    // below is getting called when other buttons below are clicked!  but adding above parameter breaks it.
     $('.content_container').on('submit', function () {
         event.preventDefault();
         event.stopPropagation();
@@ -87,13 +87,13 @@ function feedbackCorrect() {
     console.log('feedbackCorrect ran!')
     console.log(questionCounter);
     $('.content_container').html(`
-    <div>
+    <div class="correct_container">
     <h1>Well done!</h1>  
     <h2>It was indeed ${questionBank[questionCounter].correctAnswer}.</h2>
     <form>
     <button class="right_next_question" type='submit'>Next question!</button>
     </form>
-    
+    </div>
     `
     )
     
@@ -104,12 +104,12 @@ function feedbackWrong() {
     console.log('feedbackWrong ran!')
     console.log(questionCounter);
     $('.content_container').html(`
-    <div>
+    <div class="wrong_container">
         <h1>So sorry.  The answer was ${questionBank[questionCounter].correctAnswer}.</h1>
-    </div>
     <form>
     <button class="wrong_next_question" type='submit'>Next question!</button>
     </form>
+    </div>
     `
     )
 }
@@ -118,7 +118,7 @@ function feedbackWrong() {
 // When user clicks, will take to next question.
 function goToNextQuestion() {
     console.log('goToNextQuestion ran');
-    $('.content_container').on('submit', '.right_next_question', function () {
+    $('.correct_container').on('submit', function () {
         event.preventDefault();
         event.stopPropagation();
         //increment score here
@@ -128,7 +128,7 @@ function goToNextQuestion() {
         )
 
 
-    $('.content_container').on('submit', '.wrong_next_question', function () {
+    $('.wrong_container').on('submit', function () {
         event.preventDefault();
         event.stopPropagation();
         questionCounter++;
