@@ -3,7 +3,7 @@
 //  When button class is included in .on parameters, things get ugly
 //      the problem is without those classes, it won't be clear to the DOM which button in content_container 
 //      has been clicked
-//  Without having '.answer_submit' class, first answer is correctly evaluated...but then feedbackWrong is run too!
+//  Without having '.answer_submit' class, first answer is correctly evaluated...but then feedback is run too!
 //      WHY?
 
 
@@ -19,154 +19,140 @@ let questionCounter = 0;
 let scoreCounter = 0;
 
 function introScreen() {
-    console.log('introScreen ran!')
     $('.js-intro').on('click', '.begin_button', function() {
         $('.js-intro').remove();
-        questionDisplayer();
+        renderQuestion();
     })
 }
-
-function questionDisplayer() {
-    console.log('questionDisplayerran!')
-    console.log(questionCounter);
-    if (questionCounter < questionBank.length ) {
+        
+function renderQuestion() {
+    let question = questionBank[questionCounter].question;
+    let answer = questionBank[questionCounter].answers;
+    
     $('.content_container').html(
         `
         <div class="question_formatter">
-            <h2>${questionBank[questionCounter].question}</h2>
+            <h2>${question}</h2>
         </div>
         <form class="answer_container"> 
             <label class="answer_formatter">
-                <input type="radio" value="${questionBank[questionCounter].answers[0]}" name="answer" required>
-                <span>${questionBank[questionCounter].answers[0]}</span> 
+                <input type="radio" value="${answer[0]}" name="answer" required>
+                <span>${answer[0]}</span> 
                 </label>
             <label class="answer_formatter">
-                <input type="radio" value="${questionBank[questionCounter].answers[1]}" name="answer" required>
-                <span>${questionBank[questionCounter].answers[1]}</span> 
+                <input type="radio" value="${answer[1]}" name="answer" required>
+                <span>${answer[1]}</span> 
                 </label>
             <label class="answer_formatter">
-                <input type="radio" value="${questionBank[questionCounter].answers[2]}" name="answer" required>
-                <span>${questionBank[questionCounter].answers[2]}</span> 
+                <input type="radio" value="${answer[2]}" name="answer" required>
+                <span>${answer[2]}</span> 
                 </label>
             <label class="answer_formatter">
-                <input type="radio" value="${questionBank[questionCounter].answers[3]}" name="answer" required>
-                <span>${questionBank[questionCounter].answers[3]}</span> 
+                <input type="radio" value="${answer[3]}" name="answer" required>
+                <span>${answer[3]}</span> 
                 </label>
             <button class="answer_submit" type="submit">Check your answer!</button>
         </form>
         `
     )}
+
+
+$('.answer_submit').on('click', function () {
+    console.log('Assessing answer!');
+    // event.preventDefault(); don't need?
+    if ($('input:checked').val() === questionBank[questionCounter].correctAnswer) {
+        console.log('answer was correct, running feedback');
+        feedback(true);
+    }
+    else {
+        console.log('answer was incorrect, running feedback');
+        feedback(false);
+    }
+}
+    )
+
+
+function feedback(response) {
+    console.log('feedback ran!')
+    if (response === true) {
+        // increment score
+        $('.content_container').html(`
+        <div class="correct_container">
+            <h1>Well done!</h1>  
+        <h2>It was indeed ${questionBank[questionCounter].correctAnswer}.</h2>
+        <button class="next_question" type='submit'>Next question!</button>
+        </div>
+    `
+    )}
+    else {
+        console.log('feedback ran!')
+        $('.content_container').html(`
+        <div class="wrong_container">
+            <h1>So sorry.  The answer was ${questionBank[questionCounter].correctAnswer}.</h1>
+        <button class="next_question" type='submit'>Next question!</button>
+        </div>
+        `
+    )}
+}
+
+$('.next_question').on('click', function(){
+    // increment questionCounter
+    if (questionCounter < questionBank.length ) {
+        renderQuestion();
+    }
     else {
         endScreen();
     }
-}
+})
 
-// listens for submission of 'answer_submit' button
-function respondToAnswer() {
-    console.log('respondToAnswer ran!')
-    console.log(questionCounter);
-    // $('.content_container').on('submit', '.answer_submit'... crashes program!  Why?
-    // below is getting called when other buttons below are clicked!  but adding above parameter breaks it.
-    $('.content_container').on('submit', function () {
-        event.preventDefault();
-        event.stopPropagation();
-        if ($('input:checked').val() === questionBank[questionCounter].correctAnswer) {
-            console.log('answer was correct, running feedbackCorrect');
-            feedbackCorrect();
-        }
-        else {
-            console.log('answer was incorrect, running feedbackWrong');
-            feedbackWrong();
-        }
-    }
-        )
-}
-
-// runs if user answer was correct
-function feedbackCorrect() {
-    console.log('feedbackCorrect ran!')
-    console.log(questionCounter);
-    $('.content_container').html(`
-    <div class="correct_container">
-    <h1>Well done!</h1>  
-    <h2>It was indeed ${questionBank[questionCounter].correctAnswer}.</h2>
-    <form>
-    <button class="right_next_question" type='submit'>Next question!</button>
-    </form>
-    </div>
-    `
-    )
-    
-}
-
-// runs if user answer was wrong
-function feedbackWrong() {
-    console.log('feedbackWrong ran!')
-    console.log(questionCounter);
-    $('.content_container').html(`
-    <div class="wrong_container">
-        <h1>So sorry.  The answer was ${questionBank[questionCounter].correctAnswer}.</h1>
-    <form>
-    <button class="wrong_next_question" type='submit'>Next question!</button>
-    </form>
-    </div>
-    `
-    )
-}
-
-// this will listen for 'next question' buttons associated with either 'correct' or 'incorrect' prompts above.
-// When user clicks, will take to next question.
-function goToNextQuestion() {
-    console.log('goToNextQuestion ran');
-    $('.correct_container').on('submit', function () {
-        event.preventDefault();
-        event.stopPropagation();
-        //increment score here
-        questionCounter++;
-        questionDisplayer();
-        }
-        )
-
-
-    $('.wrong_container').on('submit', function () {
-        event.preventDefault();
-        event.stopPropagation();
-        questionCounter++;
-        questionDisplayer();
-        }
-        )
-
-}
-
-
-//called when questionCounter = questionBank.length
 function endScreen() {
     console.log('endScreen ran');
     $('.content_container').html(`
     <div>
         <h1>You have reached the end.</h1>
     </div>
-    <form>
     <button class="start_over" type='submit'>Start over!</button>
-    </form>
     `)
-
 }
 
-function listenForStartOver() {
-    $('.content_container').on('submit', '.start_over', function () {
-     event.preventDefault();
-     event.stopPropagation();
+$('.start_over').on('click', function () {
      questionCounter = 0;
-     questionDisplayer();
+     renderQuestion();
     })
-}
 
-function handleAllFunctions() {
-    goToNextQuestion();
+function handleFunctions() {
     introScreen();
-    respondToAnswer();   
-    
+
 }
 
-$(handleAllFunctions);
+$(handleFunctions);
+
+
+// function nextQuestion() {
+//     
+// }
+
+// function renderQuestion() {
+//     console.log('renderQuestion ran');
+//     $('.correct_container').on('submit', function () {
+//         event.preventDefault();
+//         event.stopPropagation();
+//         //increment score here
+//         questionCounter++;
+//         renderQuestion();
+//         }
+//         )
+
+
+//     $('.wrong_container').on('submit', function () {
+//         event.preventDefault();
+//         event.stopPropagation();
+//         questionCounter++;
+//         renderQuestion();
+//         }
+//         )
+
+// }
+
+
+//called when questionCounter = questionBank.length
