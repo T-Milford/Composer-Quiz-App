@@ -1,6 +1,11 @@
 
-// I think my main problem has been having event handlers at the end of a function that is supposed to run only
-// at a particular time.
+// Current problems:
+//  When button class is included in .on parameters, things get ugly
+//      the problem is without those classes, it won't be clear to the DOM which button in content_container 
+//      has been clicked
+//  Without having '.answer_submit' class, first answer is correctly evaluated...but then feedbackWrong is run too!
+//      WHY?
+
 
 // Users should be prompted through a series of at least 5 multiple choice questions that they can answer.
     // Users will see which question they're on (for instance, "7 out of 10")
@@ -56,24 +61,28 @@ function questionDisplayer() {
     }
 }
 
-// is only running once...why?
+// listens for submission of 'answer_submit' button
 function respondToAnswer() {
     console.log('respondToAnswer ran!')
     console.log(questionCounter);
-//  $('.content_container').on('submit', 'answer_submit', function ()  -->  resets program.  Why??
-    $('.content_container').on('submit', '.answer_submit', function () {
+    // $('.content_container').on('submit', '.answer_submit'... crashes program!  Why?
+    // this is getting called when other buttons below are clicked!  but adding above parameters breaks it.
+    $('.content_container').on('submit', function () {
         event.preventDefault();
         event.stopPropagation();
         if ($('input:checked').val() === questionBank[questionCounter].correctAnswer) {
+            console.log('answer was correct, running feedbackCorrect');
             feedbackCorrect();
         }
         else {
+            console.log('answer was incorrect, running feedbackWrong');
             feedbackWrong();
         }
     }
         )
 }
 
+// runs if user answer was correct
 function feedbackCorrect() {
     console.log('feedbackCorrect ran!')
     console.log(questionCounter);
@@ -90,6 +99,7 @@ function feedbackCorrect() {
     
 }
 
+// runs if user answer was wrong
 function feedbackWrong() {
     console.log('feedbackWrong ran!')
     console.log(questionCounter);
@@ -104,9 +114,10 @@ function feedbackWrong() {
     )
 }
 
-
-// this will listen for 'next question' buttons associated with either correct or incorrect answer screens 
+// this will listen for 'next question' buttons associated with either 'correct' or 'incorrect' prompts above.
+// When user clicks, will take to next question.
 function goToNextQuestion() {
+    console.log('goToNextQuestion ran');
     $('.content_container').on('submit', '.right_next_question', function () {
         event.preventDefault();
         event.stopPropagation();
