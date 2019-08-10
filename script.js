@@ -1,9 +1,15 @@
 
+// I think my main problem has been having event handlers at the end of a function that is supposed to run only
+// at a particular time.
+
 // Users should be prompted through a series of at least 5 multiple choice questions that they can answer.
     // Users will see which question they're on (for instance, "7 out of 10")
     // and their current score ("5 correct, 2 incorrect").
 
-    // questionCounter needs to accurately pull/track questions and answers, but 
+// Users should be shown their overall score at the end of the quiz. In other words, 
+// how many questions they got right out of the total questions asked.
+// Users should be able to start a new quiz.
+
 let questionCounter = 0;
 let scoreCounter = 0;
 
@@ -15,7 +21,7 @@ function introScreen() {
     })
 }
 
-function questionDisplayer () {
+function questionDisplayer() {
     console.log('questionDisplayerran!')
     console.log(questionCounter);
     if (questionCounter < questionBank.length ) {
@@ -24,7 +30,6 @@ function questionDisplayer () {
         <div class="question_formatter">
             <h2>${questionBank[questionCounter].question}</h2>
         </div>
-
         <form class="answer_container"> 
             <label class="answer_formatter">
                 <input type="radio" value="${questionBank[questionCounter].answers[0]}" name="answer" required>
@@ -51,12 +56,12 @@ function questionDisplayer () {
     }
 }
 
-// is only running once...is it always listening?
-function respondToAnswer () {
+// is only running once...why?
+function respondToAnswer() {
     console.log('respondToAnswer ran!')
     console.log(questionCounter);
 //  $('.content_container').on('submit', 'answer_submit', function ()  -->  resets program.  Why??
-    $('.content_container').on('submit', 'answer_submit', function () {
+    $('.content_container').on('submit', '.answer_submit', function () {
         event.preventDefault();
         event.stopPropagation();
         if ($('input:checked').val() === questionBank[questionCounter].correctAnswer) {
@@ -69,9 +74,7 @@ function respondToAnswer () {
         )
 }
 
-// How come I am only seeing this after the first question?  It is running but goToNextQuestion ends up
-// running immediately.  Also: 
-function feedbackCorrect () {
+function feedbackCorrect() {
     console.log('feedbackCorrect ran!')
     console.log(questionCounter);
     $('.content_container').html(`
@@ -84,20 +87,10 @@ function feedbackCorrect () {
     
     `
     )
-    // when you click this button, it makes feedbackWrong run!  Why?  When I specify class after "submit", 
-    //it makes it worse!  It makes it display "feedbackWrong".  Why?
-    $('.content_container').on('submit', '.right_next_question', function () {
-        event.preventDefault();
-        event.stopPropagation();
-        //increment score here
-        questionCounter++;
-        questionDisplayer();
-        }
-    )
+    
 }
 
-// this function is running an extra time after itself AND after feedbackCorrect!  What is going on??
-function feedbackWrong () {
+function feedbackWrong() {
     console.log('feedbackWrong ran!')
     console.log(questionCounter);
     $('.content_container').html(`
@@ -109,33 +102,34 @@ function feedbackWrong () {
     </form>
     `
     )
-    
-    //'.wrong_next_question' in .on parameters; needed?
+}
+
+
+// this will listen for 'next question' buttons associated with either correct or incorrect answer screens 
+function goToNextQuestion() {
+    $('.content_container').on('submit', '.right_next_question', function () {
+        event.preventDefault();
+        event.stopPropagation();
+        //increment score here
+        questionCounter++;
+        questionDisplayer();
+        }
+        )
+
+
     $('.content_container').on('submit', '.wrong_next_question', function () {
         event.preventDefault();
         event.stopPropagation();
         questionCounter++;
-        questionDisplayer;
+        questionDisplayer();
         }
-    )
+        )
+
 }
 
-// unneeded function?
-// function goToNextQuestion () {
-//     console.log('goToNextQuestion ran!')
-    // event.preventDefault();
-    // event.stopPropagation();
-        // questionCounter++;
-        // console.log(questionCounter);
-        // questionDisplayer();
-// }
 
-
-// Users should be shown their overall score at the end of the quiz. In other words, 
-// how many questions they got right out of the total questions asked.
-// Users should be able to start a new quiz.
-//Why is final question being skipped?
-function endScreen () {
+//called when questionCounter = questionBank.length
+function endScreen() {
     console.log('endScreen ran');
     $('.content_container').html(`
     <div>
@@ -146,17 +140,22 @@ function endScreen () {
     </form>
     `)
 
+}
+
+function listenForStartOver() {
     $('.content_container').on('submit', '.start_over', function () {
-        event.preventDefault();
-        event.stopPropagation();
-        questionCounter = 0;
-        questionDisplayer();
+     event.preventDefault();
+     event.stopPropagation();
+     questionCounter = 0;
+     questionDisplayer();
     })
 }
 
-function handleAllFunctions () {
+function handleAllFunctions() {
+    goToNextQuestion();
     introScreen();
     respondToAnswer();   
+    
 }
 
 $(handleAllFunctions);
