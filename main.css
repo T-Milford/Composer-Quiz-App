@@ -2,17 +2,24 @@
     box-sizing: border-box;
 }
 
-.main_title {
-    text-align: center;
-    color: blue;
-}
-
-.intro {
+button {
     display: block;
     margin: auto;
 }
 
-.begin_button {
+body {
+    background: 
+        url(https://cdn.pixabay.com/photo/2016/04/30/14/58/music-1363069_1280.jpg);
+    font-family: Garamond;
+    font-size: 22px;
+    color: darkgreen;
+}
+
+.main_title {
+    text-align: center;
+}
+
+.intro {
     display: block;
     margin: auto;
 }
@@ -39,5 +46,5 @@
     display: flex;
     width: 50%;
     margin: auto;
-    justify-content: space-between
+    justify-content: space-between;
 }
