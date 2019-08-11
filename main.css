@@ -3,6 +3,7 @@
 }
 
 body {
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -36,14 +37,6 @@ body {
     background: goldenrod;
 
 }
-
-/* .main_window {
-    
-} */
-/* 
-.main_window p, h1, h2 {
-    text-align: center;   
-} */
 
 .question_formatter {
     text-align: left;
