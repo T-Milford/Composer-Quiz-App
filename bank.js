@@ -1,6 +1,6 @@
 const questionBank = [
     {
-      question: 'Which composer, on his death bed, famously had a friend burn all of his unreleased music?',
+      question: 'Which composer, on his death bed, asked a friend burn all of his unreleased music?',
       answers: [
         'Brahms',
         'Beethoven',
@@ -10,8 +10,8 @@ const questionBank = [
       correctAnswer: 'Brahms'
     },
     {
-      question: 'Which composer was happy to go to jail for several days because he refused to give an \
-      initial ‘honorary’ payment to his new prospective employer?',
+      question: 'Which composer was happy to go to jail for several days rather than give an \
+      ‘honorary’ payment to his new employer?',
       answers: [
         'Brahms',
         'Beethoven',
@@ -21,7 +21,7 @@ const questionBank = [
       correctAnswer: 'Bach'
     }, 
     {
-    question: 'Which composer wrote “Air on a G String”?',
+    question: 'Which composer was one of the first to popularize purely instrumental music?',
       answers: [
         'Brahms',
         'Beethoven',
@@ -31,7 +31,7 @@ const questionBank = [
       correctAnswer: 'Bach'
     },
     {
-      question: 'Who composed “The Magic Flute”??',
+      question: 'After hearing a piece once, this composer could immediately transcribe all of it.',
         answers: [
           'Brahms',
           'Beethoven',
@@ -41,7 +41,7 @@ const questionBank = [
         correctAnswer: 'Mozart'
       },
       {
-        question: 'Which composer was famously crude in public but secretly gave away most of his money to help others?”?',
+        question: 'While this composer was callous and irritable in public, he secretly gave away most of his money to help others.',
           answers: [
             'Brahms',
             'Beethoven',
@@ -51,7 +51,7 @@ const questionBank = [
           correctAnswer: 'Brahms'
         },
         {
-          question: 'Which composer wrote one of his most famous solo violin pieces in the wake of the loss of his wife and youngest daughter”?',
+          question: 'Which composer wrote one of his most famous solo violin pieces after the loss of his wife and youngest daughter”?',
             answers: [
               'Brahms',
               'Beethoven',
@@ -61,7 +61,7 @@ const questionBank = [
             correctAnswer: 'Bach'
           },
           {
-            question: 'Which composer wrote many of his most famous works after he become almost completely deaf?',
+            question: 'Which composer wrote many of his most famous works after becoming almost completely deaf?',
               answers: [
                 'Brahms',
                 'Beethoven',

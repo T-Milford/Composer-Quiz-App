@@ -5,6 +5,8 @@ function introScreen() {
     $(document).on('click', '.begin_button', function() {
         renderQuestion();
     })
+    $('.question_counter').html('Get ready!')
+
 }
         
 function renderQuestion() {
@@ -13,8 +15,8 @@ function renderQuestion() {
     
     $('.content_container').html(
         `
-        <div class="question_formatter">
-            <h2>${question}</h2>
+        <div>
+            <h2 class="question_formatter">${question}</h2>
         </div>
         <form class="answer_container"> 
             <label class="answer_formatter">
@@ -35,8 +37,8 @@ function renderQuestion() {
                 </label>
             <button type="submit" class="answer_submit">Check your answer!</button>
         </form>`)
-    $('.question_counter').text(`${questionCounter + 1} out of 7`)
-    $('.score_counter').text(`${scoreCounter} correct, ${7-questionCounter} questions left`)
+    $('.question_counter').text(`${questionCounter + 1} out of 7 points`)
+    $('.score_counter').text(`${scoreCounter} correct, ${7-questionCounter} left`)
 }
 
 
@@ -102,7 +104,10 @@ function endScreen() {
         <h2>You correctly answered ${scoreCounter} out of 7 questions.</h2>
     </div>
     <button class="start_over">Try again?</button>
-    `)}
+    `)
+    $('.score_counter').html('')
+
+}
 
 $(document).on('click', '.start_over', function () {
      questionCounter = 0;
