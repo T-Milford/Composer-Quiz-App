@@ -1,6 +1,6 @@
 const questionBank = [
     {
-      question: 'Which composer, on his death bed, asked a friend burn all of his unreleased music?',
+      question: 'On his death bed, this composer asked a friend burn all of his unreleased compositions.',
       answers: [
         'Brahms',
         'Beethoven',
@@ -31,7 +31,7 @@ const questionBank = [
       correctAnswer: 'Bach'
     },
     {
-      question: 'After hearing a piece once, this composer could immediately transcribe all of it.',
+      question: 'After hearing a piece once, this composer could immediately transcribe all of it from memory.',
         answers: [
           'Brahms',
           'Beethoven',

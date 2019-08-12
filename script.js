@@ -37,7 +37,7 @@ function renderQuestion() {
                 </label>
             <button type="submit" class="answer_submit">Check your answer!</button>
         </form>`)
-    $('.question_counter').text(`${questionCounter + 1} out of 7 points`)
+    $('.question_counter').text(`Question ${questionCounter + 1} out of 7`)
     $('.score_counter').text(`${scoreCounter} correct, ${7-questionCounter} left`)
 }
 
@@ -63,8 +63,7 @@ function feedback(response) {
         scoreCounter++;
         $('.content_container').html(`
         <div class="correct_container">
-            <h1>Well done!</h1>  
-        <h2>It was indeed ${correct}.</h2>
+            <h2>Well done! It was indeed ${correct}.</h2>
         <button class="next_question">Next question!</button>
         </div>
     `)}
@@ -72,7 +71,7 @@ function feedback(response) {
         console.log('feedback ran!')
         $('.content_container').html(`
         <div class="wrong_container">
-            <h1>So sorry.  The answer was ${correct}.</h1>
+            <h2>So sorry.  The answer was ${correct}.</h2>
             <button class="next_question">Next question!</button>
         </div>
         `)}
@@ -106,6 +105,7 @@ function endScreen() {
     <button class="start_over">Try again?</button>
     `)
     $('.score_counter').html('')
+    $('.question_counter').html('')
 
 }
 

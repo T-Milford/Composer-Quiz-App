@@ -3,7 +3,7 @@
 }
 
 body {
-    height: 100vh;
+    /* height: 100vh; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,28 +11,27 @@ body {
         url(https://cdn.pixabay.com/photo/2016/04/30/14/58/music-1363069_1280.jpg);
     font-family: Garamond;
     font-size: 22px;
-    color: rgb(155, 36, 46);
+    /* color: rgb(155, 36, 46); */
+    color: rgb(53, 0, 139);
 }
 
-.main_title {
+h1, h2 {
     text-align: center;
 }
-/* 
-.intro {
-    display: block;
-    margin: auto;
-} */
 
+h1 {
+    font-size: 35px;
+}
 .content_container {
-    
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 50%;
-    height: 500px;
-    border: 2px black solid;
+    /* height: 500px; */
+    border: 2px rgb(53, 0, 139) solid;
     border-radius: 3px;
     margin: auto;
+    margin-top: 60px;
     padding: 30px;
     background: goldenrod;
 
@@ -51,13 +50,16 @@ button {
     display: block;
     margin: auto;
     margin-top: 20px;
+    font-size: 15px;
+    border-radius: 3px;
+    
 }
 
 .footer_counters {
     display: flex;
     align-items: center;
     background: goldenrod;
-    border: 2px black solid;
+    border: 2px rgb(53, 0, 139) solid;
     border-radius: 3px;
     width: 50%;
     height: 40px;
@@ -67,7 +69,15 @@ button {
     font-weight: bold;
 }
 
-@media only screen and (max-width: 650px) {
+@media only screen and (min-width: 481px) and (max-width: 800px) {
+    h1, h2 {
+      font-size: 25px;
+    }
+    
+    .content_container, .footer_counters {
+        width: 100%;
+    }
+    
     .content_container {
         height: 250px;
         padding: 15px;
@@ -87,16 +97,24 @@ button {
 }
 
 
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 480px) {
     body {
         font-size: 10px;
+        
+    }
+
+    h1, h2 {
+        font-size: 15px;
+    }
+
+    .content_container, .footer_counters {
+        width: 90%;
     }
 
     .content_container {
-        width: 75%;
-        height: 300px;
+        height: 200px;
         padding: 10px;
-        margin-top: 30px;
+        margin-top: 100px;
     }
 
     .content_container {
@@ -105,17 +123,16 @@ button {
 
 
     .footer_counters {
-        width: 75%;
         height: 20px;
-
     }
 
     .question_counter, .score_counter {
         line-height: 7px;
-        vertical-align: middle;
+        /* vertical-align: middle; */
     }
 
     button {
         font-size: 8px;
+        margin-top: 10px;
     }
 }
