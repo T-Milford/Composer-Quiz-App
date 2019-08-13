@@ -18,25 +18,28 @@ function renderQuestion() {
         <div>
             <h2 class="question_formatter">${question}</h2>
         </div>
+        <fieldset class="four_choices">
+        <legend>Choose a composer:</legend>
         <form class="answer_container"> 
-            <label class="answer_formatter">
-                <input type="radio" value="${answer[0]}" name="answer" required>
+            <label class="answer_formatter" for="${answer[0]}">
+                <input id="${answer[0]}" type="radio" value="${answer[0]}" name="answer" required>
                 <span>${answer[0]}</span> 
                 </label>
-            <label class="answer_formatter">
-                <input type="radio" value="${answer[1]}" name="answer" required>
+            <label class="answer_formatter" for="${answer[1]}">
+                <input id="${answer[1]}" type="radio" value="${answer[1]}" name="answer" required>
                 <span>${answer[1]}</span> 
                 </label>
-            <label class="answer_formatter">
-                <input type="radio" value="${answer[2]}" name="answer" required>
+            <label class="answer_formatter" for="${answer[2]}">
+                <input id="${answer[2]}" type="radio" value="${answer[2]}" name="answer" required>
                 <span>${answer[2]}</span> 
                 </label>
-            <label class="answer_formatter">
-                <input type="radio" value="${answer[3]}" name="answer" required>
+            <label class="answer_formatter" for="${answer[3]}">
+                <input id="${answer[3]}" type="radio" value="${answer[3]}" name="answer" required>
                 <span>${answer[3]}</span> 
                 </label>
             <button type="submit" class="answer_submit">Check your answer!</button>
-        </form>`)
+        </form>
+        </fieldset>`)
     $('.question_counter').text(`Question ${questionCounter + 1} out of 7`)
     $('.score_counter').text(`${scoreCounter} correct, ${7-questionCounter} left`)
 }
@@ -76,7 +79,7 @@ function feedback(response) {
         </div>
         `)}
 }
-// would love to make this work...
+// would love to make this work eventually...
 // function pictureSorter(correct) {
 //     if (correct === 'Brahms') {
 //         return "https://cdn.britannica.com/s:300x300/01/8501-004-E3E15D16.jpg";
