@@ -101,7 +101,7 @@ $(document).on('click', '.next_question', function(){
 function endScreen() {
     console.log('endScreen ran');
     $('.content_container').html(`
-    <div>
+    <div class="end_screen">
         <h1>You have reached the end.</h1>
         <h2>You correctly answered ${scoreCounter} out of 7 questions.</h2>
     </div>
